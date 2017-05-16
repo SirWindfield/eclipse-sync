@@ -3,4 +3,4 @@
 
 unsigned int fib(unsigned int);
 
-#endif PRAKTIKUM_MAIN_H
+#endif // PRAKTIKUM_MAIN_H

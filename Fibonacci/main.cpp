@@ -8,9 +8,9 @@ int main(int argc, char* argv[]) {
     // Ausgabe rechtsseitig formatieren
     std::cout << std::right;
     for(int i = 0; i <= 25; i++) {
-        // formatieren
+        // Ausgabe formatieren
         std::cout << "n(" << std::setfill('0') << std::setw(2) << i << "):" << std::setfill(' ') << std::setw(6);
-        // Fibonacci Ausgabe
+        // fibonacci ausgeben
         std::cout << fib(i) << std::endl;
     }
     return 0;
