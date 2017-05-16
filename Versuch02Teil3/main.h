@@ -6,6 +6,6 @@
 int encode(const char c, int offset);
 int decode(const char c, int offset);
 
-std::string caeser(std::string msg, int offset);
+void caeser(std::string msg, int offset);
 
 #endif /* MAIN_H_ */
