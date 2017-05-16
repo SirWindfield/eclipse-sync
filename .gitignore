@@ -1,0 +1,12 @@
+# ignore workspace specific stuff and just sync files
+.metadata
+RemoteSystemsTempFiles
+
+# child directory project files
+.settings
+Debug
+Release
+
+# child directory files
+.cproject
+.project
