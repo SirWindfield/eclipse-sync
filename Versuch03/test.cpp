@@ -106,7 +106,8 @@ bool test_possible_turns(const int field[SIZE_Y][SIZE_X], const int player,
         const int count_possible_turns)
 {
     // very if your function finds all possible turns
-    return 0;
+    std::cout << possible_turns(field, player);
+    return possible_turns(field, player) == count_possible_turns;
 }
 
 bool run_full_test(void)
@@ -170,7 +171,7 @@ bool run_full_test(void)
     {
         bool passed = test_winner(winner_matrix[i], winner_code[i]);
         std::string msg = passed ? "Yes" : "No";
-        std::cout << "Matrix " << i << " passed? " << msg << std::endl;
+        std::cout << "Winner " << i << " passed? " << msg << std::endl;
 
         // if tests fail, make sure to report the error
         if (!passed)
@@ -258,11 +259,12 @@ bool run_full_test(void)
 
     for (int i = 0; i < 6; i++)
     {
-        bool passed = test_turn_valid(turnvalid_matrix[i], turnvalid_player[i], turnvalid_pos[i][0],
-                    turnvalid_pos[i][1], turnvalid_valid[i]);
+        bool passed = test_turn_valid(turnvalid_matrix[i], turnvalid_player[i],
+                turnvalid_pos[i][0], turnvalid_pos[i][1], turnvalid_valid[i]);
         std::string msg = passed ? "Yes" : "No";
-        std::cout << "Matrix " << i << " passed? " << msg << std::endl;
-        if(!passed) {
+                std::cout << "Valid turns  " << i << " passed? " << msg << std::endl;
+        if (!passed)
+        {
             result = false;
         }
     }
@@ -469,12 +471,13 @@ bool run_full_test(void)
 
     for (int i = 0; i < 9; i++)
     {
-        execute_turn(executeturn_matrix_in[i], executeturn_player[i], executeturn_pos[i][0], executeturn_pos[i][1]);
+        execute_turn(executeturn_matrix_in[i], executeturn_player[i],
+                executeturn_pos[i][0], executeturn_pos[i][1]);
         // compare out to res
-        bool passed = same_as(executeturn_matrix_in[i], executeturn_matrix_out[i]);
+        bool passed = same_as(executeturn_matrix_in[i],
+                executeturn_matrix_out[i]);
         std::string msg = passed ? "Yes" : "No";
-        std::cout << "Matrix " << i << " passed? " << msg << std::endl;
-        std::cout << "asdasdasd" << std::endl;
+                std::cout << "Executable turns  " << i << " passed? " << msg << std::endl;
     }
 
 // ---------- CHECK POSSIBLE TURNS ---------- //
@@ -508,7 +511,14 @@ bool run_full_test(void)
 
     for (int i = 0; i < 2; i++)
     {
-        // TODO: Call the check function
+        bool passed = test_possible_turns(possibleturns_matrix[i],
+                possibleturns_player[i], possibleturns_count[i]);
+        std::string msg = passed ? "Yes" : "No";
+        std::cout << "Possible turns  " << i << " passed? " << msg << std::endl;
+        if (!passed)
+        {
+            result = false;
+        }
     }
 
     return result;

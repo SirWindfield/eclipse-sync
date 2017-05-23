@@ -168,11 +168,11 @@ bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
             {
                 // makes sure that we follow the stones in the right direction
                 // basically the delta of each move operation
-                int step_x = 2 * i;
-                int step_y = 2 * j;
+                int step_x = i;
+                int step_y = j;
                 // the current position of the stone that we'll check
-                int next_x = pos_x + step_x;
-                int next_y = pos_y + step_y;
+                int next_x = pos_x + 2 * step_x;
+                int next_y = pos_y + 2 * step_y;
 
                 // as long as the bounds are valid, continue the check
                 bool work = true;
@@ -258,7 +258,15 @@ void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
 
 int possible_turns(const int field[SIZE_Y][SIZE_X], const int player)
 {
-    return 0;
+    int turns = 0;
+    for(int i = 0; i < SIZE_Y; i++) {
+        for(int j = 0; j < SIZE_X; j++) {
+            if(turn_valid(field, player, j, i)) {
+                turns++;
+            }
+        }
+    }
+    return turns;
 }
 
 bool human_turn(int field[SIZE_Y][SIZE_X], const int player)
