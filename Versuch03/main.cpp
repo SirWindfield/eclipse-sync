@@ -164,21 +164,21 @@ bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
             //the line is terminated by one of your own stone
             //in that case return true otherwise not
 
-            if (field[pos_y + j][pos_x + i] == opponent)
+            if (field[pos_x + i][pos_y + j] == opponent)
             {
                 // makes sure that we follow the stones in the right direction
                 // basically the delta of each move operation
-                int delta_x = i;
-                int delta_y = j;
+                int step_x = 2 * i;
+                int step_y = 2 * j;
                 // the current position of the stone that we'll check
-                int next_x = pos_x + 2 * delta_x;
-                int next_y = pos_y + 2 * delta_y;
+                int next_x = pos_x + step_x;
+                int next_y = pos_y + step_y;
 
                 // as long as the bounds are valid, continue the check
                 bool work = true;
                 while (work && within_bounds(next_x, next_y))
                 {
-                    int stone = field[next_y][next_x];
+                    int stone = field[next_x][next_y];
 
                     // check for given player
                     if (stone == opponent)
@@ -189,8 +189,8 @@ bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
                         work = false;
                     }
 
-                    next_x += delta_x;
-                    next_y += delta_y;
+                    next_x += step_x;
+                    next_y += step_y;
                 }
             }
         }
