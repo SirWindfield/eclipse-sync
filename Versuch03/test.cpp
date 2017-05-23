@@ -97,6 +97,7 @@ bool test_execute_turn(int input[SIZE_Y][SIZE_X],
         const int pos_y)
 {
     // check for a given field whether the execution of a turn is valid
+    show_field(input);
     execute_turn(input, player, pos_x, pos_y);
     return same_as(input, output);
 }
@@ -473,6 +474,7 @@ bool run_full_test(void)
         bool passed = same_as(executeturn_matrix_in[i], executeturn_matrix_out[i]);
         std::string msg = passed ? "Yes" : "No";
         std::cout << "Matrix " << i << " passed? " << msg << std::endl;
+        std::cout << "asdasdasd" << std::endl;
     }
 
 // ---------- CHECK POSSIBLE TURNS ---------- //
