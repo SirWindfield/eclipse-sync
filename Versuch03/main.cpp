@@ -92,6 +92,24 @@ void show_field(const int field[SIZE_Y][SIZE_X])
 	}//for j
 }
 
+/**
+ * @brief Calculates the winner based on the current field state.
+ *
+ * This function gets the current field passed as an parameter. Each position within
+ * the playing field can hold one of the following values:
+ * <ul>
+ *  <li>0 - The position is empty and doesn't belong to any player.</li>
+ *  <li>1 - The position belongs to player 1.</li>
+ *  <li>2 - The position belongs to player 2.</li>
+ * </ul>
+ * The result is calculated by simply summing up all entries for each player.
+ * The returning integer will either be <b>1</b> if player 1 has more entries,
+ * <b>2</b> if player 2 has more entries or <b>0</b> if the current field state
+ * is a draw.
+ *
+ * @param field The current playing field.
+ * @return An integer between 0 - 2.
+ */
 int winner(const int field[SIZE_Y][SIZE_X])
 {
 	int count_p1 = 0;

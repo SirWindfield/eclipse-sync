@@ -6,6 +6,7 @@
 
 #include "test.h"
 #include "config.h"
+#include "main.h"
 
 #include <iostream>
 
@@ -19,6 +20,20 @@ extern void execute_turn(int field[SIZE_Y][SIZE_X], const int player,
         const int pos_x, const int pos_y);
 extern int possible_turns(const int field[SIZE_Y][SIZE_X], const int player);
 
+/**
+ * @brief Checks if the expected winner is actually the winner of the passed field.
+ *
+ * This function is used for unit testing and makes sure that the winner function works
+ * properly.
+ * The first argument is the actual field state whereas the second one will be the expected
+ * winner. The check is done by comparing the result of the winner function
+ * with the expected winner.
+ * The function will then return a boolean value based on the comparison's result.
+ *
+ * @param field The current field state that should be used for unit testing
+ * @param winner_code The expected winner that results from the field.
+ * @return <b>True</b> If the check has been successful, <b>false</b> otherwise.
+ */
 bool test_winner(const int field[SIZE_Y][SIZE_X], const int winner_code)
 {
     std::cout << "Running test for 'winner'..." << std::endl;

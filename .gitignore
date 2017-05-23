@@ -6,6 +6,8 @@ RemoteSystemsTempFiles
 .settings
 Debug
 Release
+html
+latex
 
 # child directory files
 .cproject
