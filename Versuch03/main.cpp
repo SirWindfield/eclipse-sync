@@ -245,7 +245,9 @@ void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
                         }
                         work = false;
                     }
+                    // increment path length to get to the next stone
                     path_length++;
+                    // update coordinates according to new path length
                     next_x = pos_x + path_length * i;
                     next_y = pos_y + path_length * j;
                 }
