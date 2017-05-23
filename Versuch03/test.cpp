@@ -6,7 +6,6 @@
 
 #include "test.h"
 #include "config.h"
-#include "main.h"
 
 #include <iostream>
 
@@ -19,6 +18,34 @@ extern bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
 extern void execute_turn(int field[SIZE_Y][SIZE_X], const int player,
         const int pos_x, const int pos_y);
 extern int possible_turns(const int field[SIZE_Y][SIZE_X], const int player);
+
+bool within_bounds(const int x, const int y)
+{
+    // either x or y needs to be invalid
+    if (x < 0 || x >= SIZE_X)
+    {
+        return false;
+    } else if (y < 0 || y >= SIZE_Y)
+    {
+        return false;
+    }
+    return true;
+}
+
+bool same_as(int field[SIZE_Y][SIZE_X], const int other[SIZE_Y][SIZE_X])
+{
+    for (int i = 0; i < SIZE_X; i++)
+    {
+        for (int j = 0; j < SIZE_Y; j++)
+        {
+            if (field[i][j] != other[i][j])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 /**
  * @brief Checks if the expected winner is actually the winner of the passed field.
@@ -55,11 +82,14 @@ bool test_winner(const int field[SIZE_Y][SIZE_X], const int winner_code)
     return result;
 }
 
+/**
+ *
+ */
 bool test_turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
         const int pos_x, const int pos_y, const bool valid)
 {
     // check for a given field whether a turn is valid
-    return 0;
+    return turn_valid(field, player, pos_x, pos_y) == valid;
 }
 
 bool test_execute_turn(int input[SIZE_Y][SIZE_X],
@@ -67,7 +97,8 @@ bool test_execute_turn(int input[SIZE_Y][SIZE_X],
         const int pos_y)
 {
     // check for a given field whether the execution of a turn is valid
-    return 0;
+    execute_turn(input, player, pos_x, pos_y);
+    return same_as(input, output);
 }
 
 bool test_possible_turns(const int field[SIZE_Y][SIZE_X], const int player,
@@ -226,7 +257,13 @@ bool run_full_test(void)
 
     for (int i = 0; i < 6; i++)
     {
-        // TODO: Call the check function
+        bool passed = test_turn_valid(turnvalid_matrix[i], turnvalid_player[i], turnvalid_pos[i][0],
+                    turnvalid_pos[i][1], turnvalid_valid[i]);
+        std::string msg = passed ? "Yes" : "No";
+        std::cout << "Matrix " << i << " passed? " << msg << std::endl;
+        if(!passed) {
+            result = false;
+        }
     }
 
 // ---------- CHECK EXECUTE TURN ---------- //
@@ -431,7 +468,11 @@ bool run_full_test(void)
 
     for (int i = 0; i < 9; i++)
     {
-        // TODO: Call the check function
+        execute_turn(executeturn_matrix_in[i], executeturn_player[i], executeturn_pos[i][0], executeturn_pos[i][1]);
+        // compare out to res
+        bool passed = same_as(executeturn_matrix_in[i], executeturn_matrix_out[i]);
+        std::string msg = passed ? "Yes" : "No";
+        std::cout << "Matrix " << i << " passed? " << msg << std::endl;
     }
 
 // ---------- CHECK POSSIBLE TURNS ---------- //
