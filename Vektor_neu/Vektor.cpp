@@ -10,6 +10,8 @@
 #include <cmath>
 #include <iostream>
 
+#define DELTA 0.1
+
 Vektor::Vektor(double inX, double inY, double inZ) :
         x(inX), y(inY), z(inZ)
 {
@@ -48,7 +50,7 @@ Vektor Vektor::add(const Vektor& vec) const
 
 bool Vektor::ortho(const Vektor& vec) const
 {
-    return scalarProd(vec) == 0;
+    return fabs(scalarProd(vec)) < DELTA;
 }
 
 double Vektor::scalarProd(const Vektor& vec) const
