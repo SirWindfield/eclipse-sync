@@ -259,9 +259,9 @@ void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
 int possible_turns(const int field[SIZE_Y][SIZE_X], const int player)
 {
     int turns = 0;
-    for(int i = 0; i < SIZE_Y; i++) {
-        for(int j = 0; j < SIZE_X; j++) {
-            if(turn_valid(field, player, j, i)) {
+    for(int i = 0; i < SIZE_X; i++) {
+        for(int j = 0; j < SIZE_Y; j++) {
+            if(turn_valid(field, player, i, j)) {
                 turns++;
             }
         }

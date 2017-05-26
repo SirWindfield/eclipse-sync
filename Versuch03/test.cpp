@@ -105,7 +105,7 @@ bool test_execute_turn(int input[SIZE_Y][SIZE_X],
 bool test_possible_turns(const int field[SIZE_Y][SIZE_X], const int player,
         const int count_possible_turns)
 {
-    // very if your function finds all possible turns
+    // verify if your function finds all possible turns
     std::cout << possible_turns(field, player);
     return possible_turns(field, player) == count_possible_turns;
 }
