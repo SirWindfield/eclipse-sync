@@ -164,33 +164,32 @@ bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
             //the line is terminated by one of your own stone
             //in that case return true otherwise not
 
-            if (field[pos_x + i][pos_y + j] == opponent)
+            if (field[pos_y + j][pos_x + i] == opponent)
             {
-                // makes sure that we follow the stones in the right direction
-                // basically the delta of each move operation
-                int step_x = i;
-                int step_y = j;
+                // ignore the first found enemy stone -> 2
+                int path_length = 2;
                 // the current position of the stone that we'll check
-                int next_x = pos_x + 2 * step_x;
-                int next_y = pos_y + 2 * step_y;
+                int next_x = pos_x + path_length * i;
+                int next_y = pos_y + path_length * j;
 
                 // as long as the bounds are valid, continue the check
                 bool work = true;
                 while (work && within_bounds(next_x, next_y))
                 {
-                    int stone = field[next_x][next_y];
-
-                    // check for given player
-                    if (stone == opponent)
+                    int stone = field[next_y][next_x];
+                    if (stone == 0)
+                    {
+                        // stop looking for other stones once we reached an empty spot
+                        work = false;
+                    } else if (stone == player)
                     {
                         return true;
-                    } else if (stone == 0)
-                    {
-                        work = false;
                     }
-
-                    next_x += step_x;
-                    next_y += step_y;
+                    // increment path length to get to the next stone
+                    path_length++;
+                    // update coordinates according to new path length
+                    next_x = pos_x + path_length * i;
+                    next_y = pos_y + path_length * j;
                 }
             }
         }
@@ -259,9 +258,12 @@ void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
 int possible_turns(const int field[SIZE_Y][SIZE_X], const int player)
 {
     int turns = 0;
-    for(int i = 0; i < SIZE_X; i++) {
-        for(int j = 0; j < SIZE_Y; j++) {
-            if(turn_valid(field, player, i, j)) {
+    for (int i = 0; i < SIZE_X; i++)
+    {
+        for (int j = 0; j < SIZE_Y; j++)
+        {
+            if (turn_valid(field, player, i, j))
+            {
                 turns++;
             }
         }
