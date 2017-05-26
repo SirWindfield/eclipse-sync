@@ -12,6 +12,9 @@
 
 int main()
 { 
-   return 0;
+   Vektor v1(0,0,0); // objeckt
+   Vektor *v = new Vektor(2,3,5); // -> pointer
 
+   v->ausgabe();
+   return 0;
 }
