@@ -197,6 +197,9 @@ bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
     return false;
 }
 
+/**
+ *
+ */
 void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
         const int pos_y)
 {
@@ -255,6 +258,9 @@ void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
     }
 }
 
+/**
+ *
+ */
 int possible_turns(const int field[SIZE_Y][SIZE_X], const int player)
 {
     int turns = 0;
@@ -280,7 +286,7 @@ bool human_turn(int field[SIZE_Y][SIZE_X], const int player)
 
     int px;
     int py;
-    bool repeat = false;
+    // bool repeat = false; not used
 
     while (true)
     {
@@ -294,6 +300,7 @@ bool human_turn(int field[SIZE_Y][SIZE_X], const int player)
 
         if (turn_valid(field, player, px, py))
         {
+            std::cout << "turn is actually valid" << std::endl;
             //accept turn;
             break;
         } else
@@ -307,9 +314,34 @@ bool human_turn(int field[SIZE_Y][SIZE_X], const int player)
     return true;
 }
 
+/**
+ *
+ */
+int do_turn(int field[SIZE_Y][SIZE_X], const int player, const int player_type)
+{
+    int moves = possible_turns(field, player);
+    if (moves > 0)
+    {
+        switch (player_type)
+        {
+        case HUMAN:
+            human_turn(field, player);
+            break;
+        case COMPUTER:
+            computer_turn(field, player);
+            break;
+        }
+
+        show_field(field);
+    }
+    return moves;
+}
+
+/**
+ *
+ */
 void game(const int player_typ[2])
 {
-
     int field[SIZE_Y][SIZE_X];
 
     //Create starting pattern
@@ -317,14 +349,42 @@ void game(const int player_typ[2])
 
     int current_player = 1;
     show_field(field);
-    //let each player make its moves until no further moves are possible
+
+    // stores the last player's possible turns
+    int priorTurns = 0;
+    // used to break the loop
+    bool playing = true;
+    while (playing)
+    {
+        int moves = do_turn(field, current_player,
+                player_typ[current_player - 1]);
+        if (moves == 0 && priorTurns == 0)
+        {
+            // stop the game
+            playing = false;
+        }
+        // toggle between players
+        current_player = current_player == 1 ? 2 : 1;
+        priorTurns = moves;
+    }
 
     switch (winner(field))
     {
-
+    case 0:
+        std::cout << "The game ended in a draw." << std::endl;
+        break;
+    case 1:
+        std::cout << "Player 1 wins!" << std::endl;
+        break;
+    case 2:
+        std::cout << "Player 2 wins!" << std::endl;
+        break;
     }
 }
 
+/**
+ *
+ */
 int main(void)
 {
     if (TEST == 1)
@@ -339,13 +399,8 @@ int main(void)
         }
     }
 
-    int field[SIZE_Y][SIZE_X];
-
-    initialize_field(field);
-
-    //show_field(field);
-
-    // int player_type[2] = { HUMAN, HUMAN };  //Contains information wether players are HUMAN(=1) or COPMUTER(=2)
-    // game(player_type);
+    int player_type[2] =
+    { COMPUTER, COMPUTER }; //Contains information whether players are HUMAN(=1) or COPMUTER(=2)
+    game(player_type);
     return 0;
 }
