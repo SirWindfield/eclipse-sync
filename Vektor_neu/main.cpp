@@ -41,5 +41,10 @@ void test()
 int main()
 {
     test();
+
+    // rotation
+    Vektor v2(1, 2, 3);
+    v2.rotateAroundZ(1);
+    v2.ausgabe();
     return 0;
 }

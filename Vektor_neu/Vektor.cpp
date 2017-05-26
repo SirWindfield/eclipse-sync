@@ -71,8 +71,14 @@ double Vektor::angle(const Vektor& vec) const
     return rad * (180 / M_PI);
 }
 
-void Vektor::rotateAroundZ(const double rad) {
-
+void Vektor::rotateAroundZ(const double rad)
+{
+    // calculate new positions using the rotation matrix provided within the pdf file
+    double nx = x * cos(rad) - y * sin(rad);
+    double ny = x * sin(rad) + y * cos(rad);
+    // set new values
+    x = nx;
+    y = ny;
 }
 
 void Vektor::ausgabe() const
