@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 // Praktikum Informatik 1 MMXVII
-// Versuch 04: Einf�hrung Klasse
+// Versuch 04: Einf�hrung Klasse
 //
 // Datei:  main.cpp
 // Inhalt: Hauptprogramm
@@ -9,42 +9,37 @@
 #include <iostream>
 #include "Vektor.h"
 #include <cmath>
+#include "main.h"
 
-double rnd3(double value)
-{
-    return round(value * 1000.0) / 1000.0;
+/**
+ * Entry point of the application.
+ */
+int main() {
+	// needed vectors for the calculations (in km)
+	Vektor human(0, (PLATFORM_HEIGHT_M + HUMAN_HEIGHT_M) / 1000, 0);
+	Vektor earth(0, 6371, 0);
+	Vektor head = earth.add(human);
+	// the current view vector
+	Vektor view_port = earth.sub(head);
+
+	double rad = 0;
+	int steps = 0;
+	while (!view_port.ortho(earth)) {
+		// rotate earth
+		rad += DELTA_ROT;
+		earth.rotateAroundZ(DELTA_ROT);
+
+		// calculate view port
+		view_port = earth.sub(head);
+		steps++;
+	}
+
+	std::cout << "Sie können " << view_port.length() << " km weit sehen."
+			<< std::endl;
+	std::cout << "Sie sind " << PLATFORM_HEIGHT_M << "m hoch." << std::endl;
+	std::cout << "Der Winkel beträgt " << rad * (180 / M_PI) << "°"
+			<< std::endl;
+	std::cout << "Anzahl Steps: " << steps << std::endl;
+	return 0;
 }
 
-void test()
-{
-    Vektor v1(1, 2, 3);
-    Vektor v2(4, 5, 6);
-
-    bool result = true;
-    // test length
-    if (rnd3(v1.length()) != 3.742 || rnd3(v2.length()) != 8.775)
-    {
-        std::cout << "Length test failed" << std::endl;
-        result = false;
-    }
-
-    // test angle
-    if (rnd3(v1.angle(v2)) != 12.933)
-    {
-        std::cout << "Angle test failed" << std::endl;
-        result = false;
-    }
-
-    std::cout << (result ? "ALL TESTS PASSED" : "TESTS FAILED") << std::endl;
-}
-
-int main()
-{
-    test();
-
-    // rotation
-    Vektor v2(1, 2, 3);
-    v2.rotateAroundZ(1);
-    v2.ausgabe();
-    return 0;
-}

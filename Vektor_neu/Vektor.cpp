@@ -12,10 +12,11 @@
 
 #define DELTA 0.1
 
-Vektor::Vektor(double inX, double inY, double inZ) :
-        x(inX), y(inY), z(inZ)
+Vektor::Vektor(double x, double y, double z)
 {
-
+	this->x = x;
+	this->y = y;
+	this->z = z;
 }
 
 Vektor::~Vektor()
@@ -85,7 +86,7 @@ void Vektor::rotateAroundZ(const double rad)
 
 void Vektor::ausgabe() const
 {
-    std::cout << "Vector[x=" << x << ", y=" << y << ", z=" << z << "]"
+    std::cout << "Vector@" << this << "[x=" << x << ", y=" << y << ", z=" << z << "]"
             << std::endl;
 
 }

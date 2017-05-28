@@ -11,23 +11,13 @@
  *
  */
 
-/**Defines the type of a player */
-#define HUMAN 1
-#define COMPUTER 2
-
+#include "main.h"
 #include "test.h"
 #include "config.h"
 #include "Reversi_KI.h"
 #include <iostream>
 #include <stdlib.h>
 
-/**
- * @brief Function providing first initialization of a new field
- *
- * This function fills an existing field with zeros and creates the starting pattern.
- *
- * @param field The field which will be initialized
- */
 void initialize_field(int field[SIZE_Y][SIZE_X])
 {
     for (int j = 0; j < SIZE_Y; j++)
@@ -43,16 +33,7 @@ void initialize_field(int field[SIZE_Y][SIZE_X])
     field[SIZE_Y / 2][SIZE_X / 2] = 1;
 }
 
-/**
- * @brief Prints the playing field to the console.
- *
- * This function gets the current playing field as parameter (two dimensional array)
- * with entries of 0 (field is empty), 1 (field belongs to player 1), 2 (field belongs to player 2).
- * <br>The function prints the playing field, grid included, to the console.
- * Crosses symbolize player 1 while circles symbolize player 2.
- *
- *  @param field  The field which is going to be printed
- */
+
 void show_field(const int field[SIZE_Y][SIZE_X])
 {
     std::cout << "  ";
@@ -90,24 +71,7 @@ void show_field(const int field[SIZE_Y][SIZE_X])
     } //for j
 }
 
-/**
- * @brief Calculates the winner based on the current field state.
- *
- * This function gets the current field passed as an parameter. Each position within
- * the playing field can hold one of the following values:
- * <ul>
- *  <li>0 - The position is empty and doesn't belong to any player.</li>
- *  <li>1 - The position belongs to player 1.</li>
- *  <li>2 - The position belongs to player 2.</li>
- * </ul>
- * The result is calculated by simply summing up all entries for each player.
- * The returning integer will either be <b>1</b> if player 1 has more entries,
- * <b>2</b> if player 2 has more entries or <b>0</b> if the current field state
- * is a draw.
- *
- * @param field The current playing field.
- * @return An integer between 0 - 2.
- */
+
 int winner(const int field[SIZE_Y][SIZE_X])
 {
     int count_p1 = 0;
@@ -139,9 +103,6 @@ int winner(const int field[SIZE_Y][SIZE_X])
     }
 }
 
-/**
- *
- */
 bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
         const int pos_x, const int pos_y)
 {
@@ -197,9 +158,6 @@ bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
     return false;
 }
 
-/**
- *
- */
 void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
         const int pos_y)
 {
@@ -258,9 +216,6 @@ void execute_turn(int field[SIZE_Y][SIZE_X], const int player, const int pos_x,
     }
 }
 
-/**
- *
- */
 int possible_turns(const int field[SIZE_Y][SIZE_X], const int player)
 {
     int turns = 0;
@@ -314,9 +269,6 @@ bool human_turn(int field[SIZE_Y][SIZE_X], const int player)
     return true;
 }
 
-/**
- *
- */
 int do_turn(int field[SIZE_Y][SIZE_X], const int player, const int player_type)
 {
     int moves = possible_turns(field, player);
@@ -337,9 +289,6 @@ int do_turn(int field[SIZE_Y][SIZE_X], const int player, const int player_type)
     return moves;
 }
 
-/**
- *
- */
 void game(const int player_typ[2])
 {
     int field[SIZE_Y][SIZE_X];
@@ -382,9 +331,6 @@ void game(const int player_typ[2])
     }
 }
 
-/**
- *
- */
 int main(void)
 {
     if (TEST == 1)

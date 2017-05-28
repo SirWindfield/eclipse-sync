@@ -9,8 +9,6 @@
 
 #include <iostream>
 
-#define NUMBER_TESTS_WINNER 5
-
 extern void show_field(const int field[SIZE_Y][SIZE_X]);
 extern int winner(const int field[SIZE_Y][SIZE_X]);
 extern bool turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
@@ -47,20 +45,6 @@ bool same_as(int field[SIZE_Y][SIZE_X], const int other[SIZE_Y][SIZE_X])
     return true;
 }
 
-/**
- * @brief Checks if the expected winner is actually the winner of the passed field.
- *
- * This function is used for unit testing and makes sure that the winner function works
- * properly.
- * The first argument is the actual field state whereas the second one will be the expected
- * winner. The check is done by comparing the result of the winner function
- * with the expected winner.
- * The function will then return a boolean value based on the comparison's result.
- *
- * @param field The current field state that should be used for unit testing
- * @param winner_code The expected winner that results from the field.
- * @return <b>True</b> If the check has been successful, <b>false</b> otherwise.
- */
 bool test_winner(const int field[SIZE_Y][SIZE_X], const int winner_code)
 {
     std::cout << "Running test for 'winner'..." << std::endl;
@@ -82,9 +66,6 @@ bool test_winner(const int field[SIZE_Y][SIZE_X], const int winner_code)
     return result;
 }
 
-/**
- *
- */
 bool test_turn_valid(const int field[SIZE_Y][SIZE_X], const int player,
         const int pos_x, const int pos_y, const bool valid)
 {

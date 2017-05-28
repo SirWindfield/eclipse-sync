@@ -1,6 +1,6 @@
 //
 // Praktikum Informatik 1 MMXVII
-// Versuch 04: Einführung Klasse
+// Versuch 04: Einfï¿½hrung Klasse
 //
 // Datei:  Vektor.h
 // Inhalt: Headerdatei der Klasse Vektor
@@ -71,22 +71,37 @@ public:
     double length() const;
 
     /**
+     * @brief Checks if two vectors are orthogonal to each other.
      *
+     * Two vectors are orthogonal to each other if there scalar product equals 0.
+     * The comparison will be done by using a threshold, by default 0.1.
+     * Is the scalar product less than that, the two vectors are regarded as orthogonal.
+     *
+     * @param input The other vector that will be used for the calculation.
+     * @return <b>True</b> if the vectors are orthogonal to each other, <b>false</b> otherwise.
      */
     bool ortho(const Vektor& input) const;
 
     /**
+     * @brief Returns the scalar product of two vectors.
      *
+     * @param input The other vector.
+     * @return The scalar product of the two vectors.
      */
     double scalarProd(const Vektor& input) const;
 
     /**
+     * @brief Returns the angle in degree between two vectors.
      *
+     * @param input The other vector.
+     * @return The angle (in degree) between the two vectors.
      */
     double angle(const Vektor& input) const;
 
     /**
+     * @brief Rotates this vector around the z-component.
      *
+     * @param rad The radian this vector should be rotated by.
      */
     void rotateAroundZ(const double rad);
 

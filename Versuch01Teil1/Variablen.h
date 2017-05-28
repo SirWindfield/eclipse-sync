@@ -12,5 +12,6 @@ void exercise1_2_3();
 void exercise4_6_7();
 void exercise5();
 int convertLowerToUppercase(int);
+int getIndexInAlphabet(int);
 
 #endif //PRAKTIKUM_VARIABLEN_H
