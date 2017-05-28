@@ -6,6 +6,8 @@
 #ifndef TEST_H_
 #define TEST_H_
 
+#include "config.h"
+
 /**
  * The number of tests run for the test_winner function.
  */

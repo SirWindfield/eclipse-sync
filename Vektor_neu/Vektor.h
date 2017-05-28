@@ -1,10 +1,6 @@
-//
-// Praktikum Informatik 1 MMXVII
-// Versuch 04: Einf�hrung Klasse
-//
-// Datei:  Vektor.h
-// Inhalt: Headerdatei der Klasse Vektor
-//
+/**
+ * @file Vektor.h
+ */
 
 #ifndef Vektor_H
 #define Vektor_H

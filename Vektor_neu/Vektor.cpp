@@ -1,10 +1,6 @@
-//////////////////////////////////////////////////////////////////////////////
-// Praktikum Informatik 1 MMXVII
-// Versuch 04: Einführung Klasse
-//
-// Datei:  Vektor.cpp
-// Inhalt: Sourcedatei der Klasse Vektor
-//////////////////////////////////////////////////////////////////////////////
+/**
+ * @file Vektor.cpp
+ */
 
 #include "Vektor.h"
 #include <cmath>
@@ -21,7 +17,7 @@ Vektor::Vektor(double x, double y, double z)
 
 Vektor::~Vektor()
 {
-
+	// nothing to do here...
 }
 
 double Vektor::getX() const
