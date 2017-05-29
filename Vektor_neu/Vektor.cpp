@@ -10,14 +10,14 @@
 
 Vektor::Vektor(double x, double y, double z)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
+    this->x = x;
+    this->y = y;
+    this->z = z;
 }
 
 Vektor::~Vektor()
 {
-	// nothing to do here...
+    // nothing to do here...
 }
 
 double Vektor::getX() const
@@ -82,7 +82,7 @@ void Vektor::rotateAroundZ(const double rad)
 
 void Vektor::ausgabe() const
 {
-    std::cout << "Vector@" << this << "[x=" << x << ", y=" << y << ", z=" << z << "]"
-            << std::endl;
+    std::cout << "Vector@" << this << "[x=" << x << ", y=" << y << ", z=" << z
+            << "]" << std::endl;
 
 }
