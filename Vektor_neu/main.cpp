@@ -39,7 +39,7 @@ int main()
     std::cout << "Sie koennen " << view_port.length() << " km weit sehen."
             << std::endl;
     std::cout << "Sie sind " << PLATFORM_HEIGHT_M << "m hoch." << std::endl;
-    std::cout << "Der Winkel betraegt " << rad * (180 / M_PI) << "grad"
+    std::cout << "Der Winkel betraegt " << rad * (180 / M_PI) << " grad"
             << std::endl;
     std::cout << "Anzahl Steps: " << steps << std::endl;
     return 0;

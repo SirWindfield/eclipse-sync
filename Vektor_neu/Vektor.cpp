@@ -4,6 +4,7 @@
 
 #include "Vektor.h"
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 
 #define DELTA 0.1
@@ -82,7 +83,7 @@ void Vektor::rotateAroundZ(const double rad)
 
 void Vektor::ausgabe() const
 {
-    std::cout << "Vector@" << this << "[x=" << x << ", y=" << y << ", z=" << z
-            << "]" << std::endl;
+    std::cout << std::fixed << std::setprecision(4) << "Vector@" << this
+            << "[x=" << x << ", y=" << y << ", z=" << z << "]" << std::endl;
 
 }

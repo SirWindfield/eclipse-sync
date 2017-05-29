@@ -15,6 +15,8 @@
 #include "test.h"
 #include "config.h"
 #include "Reversi_KI.h"
+#include <algorithm>
+#include <ctype.h>
 #include <iostream>
 #include <stdlib.h>
 
@@ -32,7 +34,6 @@ void initialize_field(int field[SIZE_Y][SIZE_X])
     field[SIZE_Y / 2 - 1][SIZE_X / 2] = 2;
     field[SIZE_Y / 2][SIZE_X / 2] = 1;
 }
-
 
 void show_field(const int field[SIZE_Y][SIZE_X])
 {
@@ -70,7 +71,6 @@ void show_field(const int field[SIZE_Y][SIZE_X])
         std::cout << std::endl;
     } //for j
 }
-
 
 int winner(const int field[SIZE_Y][SIZE_X])
 {
@@ -331,9 +331,15 @@ void game(const int player_typ[2])
     }
 }
 
+int player_type_for_char(char player_type)
+{
+    return player_type == 'h' ? HUMAN : COMPUTER;
+}
+
 int main(void)
 {
-    if (TEST == 1)
+    // TODO switch
+    if (TEST != 1)
     {
         bool result = run_full_test();
         if (result == true)
@@ -345,8 +351,34 @@ int main(void)
         }
     }
 
-    int player_type[2] =
-    { COMPUTER, COMPUTER }; //Contains information whether players are HUMAN(=1) or COPMUTER(=2)
-    game(player_type);
+    bool playing = true;
+    while (playing)
+    {
+        char player1, player2;
+        std::cout << "Enter first player type(for computer, H for human): "
+                << std::endl;
+        std::cin >> player1;
+        std::cout << "Enter second player type(for computer, H for human): "
+                << std::endl;
+        std::cin >> player2;
+
+        int player_type[2] =
+        { player_type_for_char(std::tolower(player1)), player_type_for_char(
+                std::tolower(player2)) };
+        game(player_type);
+
+        // another game?
+        std::string answer;
+        std::cout << "Do you want to start another game? y/n" << std::endl;
+        std::cin >> answer;
+        // to lower
+        std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+        if (answer != "yes" && answer != "y")
+        {
+            playing = false;
+        }
+    }
+
     return 0;
 }

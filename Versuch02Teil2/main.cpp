@@ -9,10 +9,10 @@
 #include <iostream>
 
 /**
- * Ab n = 47 sind die Ergebnisse falsch, da der Wertebereich des Datentyps Integer überschritten wird. Normalerweise wird dann
- * bei der kleinsten Zahl angafangen.
- * Dies kann verhindert werden, indem man das int als unsigned definiert oder einen größeren Datentypen verwendet
- * (mehr Bits -> größere Zahlen). Dafür eignet sich zum Beispiel unsigned long long.
+ * Ab n = 47 sind die Ergebnisse falsch, da der Wertebereich des Datentyps Integer ueberschritten wird. Normalerweise wird dann
+ * bei der kleinsten Zahl angefangen.
+ * Dies kann verhindert werden, indem man das int als unsigned definiert oder einen groesseren Datentypen verwendet
+ * (mehr Bits -> groessere Zahlen). Dafuer eignet sich zum Beispiel long long.
  */
 int fib(int n)
 {
