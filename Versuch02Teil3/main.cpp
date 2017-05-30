@@ -15,7 +15,7 @@ int main()
 
 int encode(const char c, int offset)
 {
-    // 'z' - offset < c         -> noch Platz für die Verschiebung?
+    // 'z' - offset < c         -> noch Platz fÃ¼r die Verschiebung?
     // ja                       -> addieren
     // nein                     -> 1) Restplatz zwischen c und 'z' berechnen
     //                             2) Auf 'a' addieren (verschieben)
@@ -23,6 +23,7 @@ int encode(const char c, int offset)
     return ('z' - offset < c) ? 'a' + (offset - ('z' - c) - 1) : c + offset;
 }
 
+// modulo
 int decode(const char c, int offset)
 {
     return ('a' + offset > c) ? 'z' - (offset - (c - 'a')) + 1 : c - offset;

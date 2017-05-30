@@ -26,7 +26,7 @@
 /**
  * The platform on which the human stands.
  */
-#define PLATFORM_HEIGHT_M 0
+#define PLATFORM_HEIGHT_M 500
 
 /**
  * @brief Calculates the view distance based on the above parameters and a custom height of a platform.
