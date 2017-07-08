@@ -36,7 +36,7 @@ int main()
                 "Ahornst.55");
         testStack.push(student);
         student = Student(23456, "Walter Rodenstock", "15.10.1963",
-                "W�llnerstr.9");
+                "Wuellnerstr.9");
         testStack.push(student);
         student = Student(34567, "Harro Simoneit", "19.06.1971", "Am Markt 1");
         testStack.push(student);
@@ -46,7 +46,7 @@ int main()
     {
         std::cout << "\nMenue:" << std::endl << "-----------------------------"
                 << std::endl << "(1): Datenelement hinzuf�gen" << std::endl
-                << "(2): Datenelement abh�ngen" << std::endl
+                << "(2): Datenelement abhaengen" << std::endl
                 << "(3): Datenbank ausgeben" << std::endl << "(7): Beenden"
                 << std::endl;
         std::cin >> abfrage;
@@ -61,7 +61,7 @@ int main()
             std::string address = "";
 
             std::cout
-                    << "Bitte geben sie die Daten f�r den Studenten ein.\nName: ";
+                    << "Bitte geben sie die Daten fuer den Studenten ein.\nName: ";
             std::cin.ignore(10, '\n'); // ignore character '\n', which still is in the buffer
             getline(std::cin, name);    // get entire line, including whitespace
             std::cout << "Geburtsdatum: ";
