@@ -1,5 +1,6 @@
 #include "city.h"
 #include "dialog.h"
+#include "newstreetdialog.h"
 #include "dijkstra.h"
 #include "mainwindow.h"
 #include "map.h"
@@ -78,6 +79,9 @@ Map* MainWindow::getMap()
 void MainWindow::toggleButtons()
 {
     ui->test_cities->setVisible(ui->chkbox->isChecked());
+    ui->btn_create->setVisible(ui->chkbox->isChecked());
+    ui->test_abstract_map->setVisible(ui->chkbox->isChecked());
+    ui->test_search->setVisible(ui->chkbox->isChecked());
 }
 
 void MainWindow::on_chkbox_clicked()
@@ -193,20 +197,46 @@ void MainWindow::on_test_search_clicked()
     {
         mapIo->fillMap(map);
     }
-    map.draw(scene);
+    redraw();
 
-    // search for shortest route
-    std::vector<Street*> result = Dijkstra::search(map, "Aachen", "Bonn");
-    QPen pen(Qt::red);
-    pen.setWidth(3);
-    for(Street* s : result)
-    {
-        s->draw(scene, pen);
-    }
-    qDebug() << "lul";
+    search("Aachen", "Bonn");
 }
 
 void MainWindow::on_create_street_clicked()
 {
+    NewStreetDialog dialog(this);
+    dialog.exec();
 
+    redraw();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(ui->from->text().isEmpty() || ui->to->text().isEmpty())
+    {
+        return;
+    }
+
+    // search
+    search(ui->from->text(), ui->to->text());
+}
+
+void MainWindow::redraw()
+{
+    scene.clear();
+    map.draw(scene);
+}
+
+void MainWindow::search(QString from, QString to)
+{
+    // search for shortest route
+    std::vector<Street*> result = Dijkstra::search(map, from, to);
+    QPen pen(Qt::red);
+    pen.setWidth(3);
+
+    redraw();
+    for(Street* s : result)
+    {
+        s->draw(scene, pen);
+    }
 }

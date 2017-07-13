@@ -43,6 +43,8 @@ private slots:
 
     void on_create_street_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene scene;
@@ -51,6 +53,8 @@ private:
 
 
     void toggleButtons();
+    void search(QString from, QString to);
+    void redraw();
 };
 
 #endif // MAINWINDOW_H

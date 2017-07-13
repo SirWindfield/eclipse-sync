@@ -15,7 +15,48 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
-    <item row="10" column="0">
+    <item row="8" column="0">
+     <widget class="QCheckBox" name="chkbox">
+      <property name="text">
+       <string>Top Secret Buttons</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QPushButton" name="test_cities">
+      <property name="text">
+       <string>Test Cities</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="btn_create">
+      <property name="text">
+       <string>Create</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" rowspan="13">
+     <widget class="QGraphicsView" name="graphicsView"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="from">
+      <property name="placeholderText">
+       <string>From...</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QPushButton" name="fill_map">
+      <property name="text">
+       <string>Fill Map</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -28,6 +69,34 @@
       </property>
      </spacer>
     </item>
+    <item row="11" column="0">
+     <widget class="QPushButton" name="test_search">
+      <property name="text">
+       <string>Test Search</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QPushButton" name="create_street">
+      <property name="text">
+       <string>Create Street</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QPushButton" name="test_abstract_map">
+      <property name="text">
+       <string>Test Abstract Map</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="btn_create_city">
+      <property name="text">
+       <string>Create City</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QLabel" name="lbl_input">
       <property name="text">
@@ -36,71 +105,19 @@
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QPushButton" name="btn_create">
-      <property name="text">
-       <string>Create</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QPushButton" name="test_cities">
-      <property name="text">
-       <string>Test Cities</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1" rowspan="11">
-     <widget class="QGraphicsView" name="graphicsView"/>
-    </item>
-    <item row="5" column="0">
-     <widget class="QPushButton" name="fill_map">
-      <property name="text">
-       <string>Fill Map</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLineEdit" name="le_name">
+     <widget class="QLineEdit" name="to">
       <property name="placeholderText">
-       <string>Your input...</string>
-      </property>
-      <property name="clearButtonEnabled">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QPushButton" name="test_search">
-      <property name="text">
-       <string>Test Search</string>
+       <string>To...</string>
       </property>
      </widget>
     </item>
     <item row="3" column="0">
-     <widget class="QPushButton" name="btn_create_city">
+     <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>Create City</string>
+       <string>Search</string>
       </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QCheckBox" name="chkbox">
-      <property name="text">
-       <string>Top Secret Buttons</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QPushButton" name="test_abstract_map">
-      <property name="text">
-       <string>Test Abstract Map</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QPushButton" name="create_street">
-      <property name="text">
-       <string>Create Street</string>
+      <property name="default">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
