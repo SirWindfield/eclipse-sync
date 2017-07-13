@@ -30,7 +30,11 @@ SOURCES += \
     map.cpp \
     abstractmap.cpp \
     street.cpp \
-    dialog.cpp
+    dialog.cpp \
+    mapionrw.cpp \
+    mapio.cpp \
+    dijkstra.cpp \
+    newstreetdialog.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -39,8 +43,13 @@ HEADERS += \
     abstractmap.h \
     street.h \
     drawable.h \
-    dialog.h
+    dialog.h \
+    mapio.h \
+    mapionrw.h \
+    dijkstra.h \
+    newstreetdialog.h
 
 FORMS += \
     mainwindow.ui \
-    dialog.ui
+    dialog.ui \
+    newstreetdialog.ui

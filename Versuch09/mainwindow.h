@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include "map.h"
+#include "mapio.h"
+#include "dijkstra.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 
@@ -33,10 +35,20 @@ private slots:
 
     void on_btn_create_city_clicked();
 
+    void on_fill_map_clicked();
+
+    void on_test_abstract_map_clicked();
+
+    void on_test_search_clicked();
+
+    void on_create_street_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene scene;
     Map map;
+    MapIo* mapIo;
+
 
     void toggleButtons();
 };

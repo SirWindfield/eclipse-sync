@@ -14,8 +14,8 @@ City::City(QString name, int x, int y)
     this->y = y;
 }
 
-void City::draw(QGraphicsScene &scene) {
-    scene.addEllipse(x, y, 4, 4, QPen(Qt::blue));
+void City::draw(QGraphicsScene &scene, QPen pen) {
+    scene.addEllipse(x, y, 4, 4, pen);
 
     // draw label
     QGraphicsTextItem *item = new QGraphicsTextItem();

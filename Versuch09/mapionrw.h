@@ -8,7 +8,7 @@ class MapIoNrw : public MapIo
 {
 public:
 	MapIoNrw();
-	~MapIoNrw();
+    virtual ~MapIoNrw();
 
 	virtual void fillMap(AbstractMap &map);
 };

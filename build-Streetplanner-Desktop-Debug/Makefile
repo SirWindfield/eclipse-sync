@@ -56,7 +56,10 @@ SOURCES       = ../Versuch09/mainwindow.cpp \
 		../Versuch09/map.cpp \
 		../Versuch09/abstractmap.cpp \
 		../Versuch09/street.cpp \
-		../Versuch09/dialog.cpp moc_mainwindow.cpp \
+		../Versuch09/dialog.cpp \
+		../Versuch09/mapionrw.cpp \
+		../Versuch09/mapio.cpp \
+		../Versuch09/dijkstra.cpp moc_mainwindow.cpp \
 		moc_dialog.cpp
 OBJECTS       = mainwindow.o \
 		main.o \
@@ -65,6 +68,9 @@ OBJECTS       = mainwindow.o \
 		abstractmap.o \
 		street.o \
 		dialog.o \
+		mapionrw.o \
+		mapio.o \
+		dijkstra.o \
 		moc_mainwindow.o \
 		moc_dialog.o
 DIST          = /usr/local/Cellar/qt/5.9.1/mkspecs/features/spec_pre.prf \
@@ -258,13 +264,19 @@ DIST          = /usr/local/Cellar/qt/5.9.1/mkspecs/features/spec_pre.prf \
 		../Versuch09/abstractmap.h \
 		../Versuch09/street.h \
 		../Versuch09/drawable.h \
-		../Versuch09/dialog.h ../Versuch09/mainwindow.cpp \
+		../Versuch09/dialog.h \
+		../Versuch09/mapio.h \
+		../Versuch09/mapionrw.h \
+		../Versuch09/dijkstra.h ../Versuch09/mainwindow.cpp \
 		../Versuch09/main.cpp \
 		../Versuch09/city.cpp \
 		../Versuch09/map.cpp \
 		../Versuch09/abstractmap.cpp \
 		../Versuch09/street.cpp \
-		../Versuch09/dialog.cpp
+		../Versuch09/dialog.cpp \
+		../Versuch09/mapionrw.cpp \
+		../Versuch09/mapio.cpp \
+		../Versuch09/dijkstra.cpp
 QMAKE_TARGET  = Streetplanner
 DESTDIR       = 
 TARGET        = Streetplanner.app/Contents/MacOS/Streetplanner
@@ -691,8 +703,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/Cellar/qt/5.9.1/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Versuch09/mainwindow.h ../Versuch09/city.h ../Versuch09/map.h ../Versuch09/abstractmap.h ../Versuch09/street.h ../Versuch09/drawable.h ../Versuch09/dialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Versuch09/mainwindow.cpp ../Versuch09/main.cpp ../Versuch09/city.cpp ../Versuch09/map.cpp ../Versuch09/abstractmap.cpp ../Versuch09/street.cpp ../Versuch09/dialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Versuch09/mainwindow.h ../Versuch09/city.h ../Versuch09/map.h ../Versuch09/abstractmap.h ../Versuch09/street.h ../Versuch09/drawable.h ../Versuch09/dialog.h ../Versuch09/mapio.h ../Versuch09/mapionrw.h ../Versuch09/dijkstra.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Versuch09/mainwindow.cpp ../Versuch09/main.cpp ../Versuch09/city.cpp ../Versuch09/map.cpp ../Versuch09/abstractmap.cpp ../Versuch09/street.cpp ../Versuch09/dialog.cpp ../Versuch09/mapionrw.cpp ../Versuch09/mapio.cpp ../Versuch09/dijkstra.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Versuch09/mainwindow.ui ../Versuch09/dialog.ui $(DISTDIR)/
 
 
@@ -737,6 +749,8 @@ moc_mainwindow.cpp: ../Versuch09/map.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
 		../Versuch09/drawable.h \
 		../Versuch09/street.h \
+		../Versuch09/mapio.h \
+		../Versuch09/dijkstra.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../Versuch09/mainwindow.h \
@@ -744,7 +758,21 @@ moc_mainwindow.cpp: ../Versuch09/map.h \
 		/usr/local/Cellar/qt/5.9.1/bin/moc
 	/usr/local/Cellar/qt/5.9.1/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/local/Cellar/qt/5.9.1/mkspecs/macx-g++ -I/Users/Sven/Desktop/eclipse-sync/Versuch09 -I/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers -I/usr/local/Cellar/qt/5.9.1/lib/QtGui.framework/Headers -I/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/usr/local/Cellar/qt/5.9.1/lib ../Versuch09/mainwindow.h -o moc_mainwindow.cpp
 
-moc_dialog.cpp: /usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QDialog \
+moc_dialog.cpp: ../Versuch09/mainwindow.h \
+		../Versuch09/map.h \
+		../Versuch09/abstractmap.h \
+		../Versuch09/city.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QString \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
+		../Versuch09/drawable.h \
+		../Versuch09/street.h \
+		../Versuch09/mapio.h \
+		../Versuch09/dijkstra.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QMainWindow \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QDialog \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qdialog.h \
 		../Versuch09/dialog.h \
 		moc_predefs.h \
@@ -782,12 +810,18 @@ mainwindow.o: ../Versuch09/mainwindow.cpp ../Versuch09/city.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QString \
 		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
 		../Versuch09/drawable.h \
+		../Versuch09/dialog.h \
 		../Versuch09/mainwindow.h \
 		../Versuch09/map.h \
 		../Versuch09/abstractmap.h \
 		../Versuch09/street.h \
+		../Versuch09/mapio.h \
+		../Versuch09/dijkstra.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QDialog \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Versuch09/mapionrw.h \
 		ui_mainwindow.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QDebug \
 		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qdebug.h \
@@ -805,6 +839,8 @@ main.o: ../Versuch09/main.cpp ../Versuch09/mainwindow.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
 		../Versuch09/drawable.h \
 		../Versuch09/street.h \
+		../Versuch09/mapio.h \
+		../Versuch09/dijkstra.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QApplication \
@@ -860,10 +896,64 @@ street.o: ../Versuch09/street.cpp ../Versuch09/street.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o street.o ../Versuch09/street.cpp
 
 dialog.o: ../Versuch09/dialog.cpp ../Versuch09/dialog.h \
+		../Versuch09/mainwindow.h \
+		../Versuch09/map.h \
+		../Versuch09/abstractmap.h \
+		../Versuch09/city.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QString \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
+		../Versuch09/drawable.h \
+		../Versuch09/street.h \
+		../Versuch09/mapio.h \
+		../Versuch09/dijkstra.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QMainWindow \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QDialog \
 		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_dialog.h
+		ui_dialog.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QDialogButtonBox \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qdialogbuttonbox.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QPushButton \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qpushbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o ../Versuch09/dialog.cpp
+
+mapionrw.o: ../Versuch09/mapionrw.cpp ../Versuch09/city.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QString \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
+		../Versuch09/drawable.h \
+		../Versuch09/street.h \
+		../Versuch09/mapionrw.h \
+		../Versuch09/mapio.h \
+		../Versuch09/abstractmap.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapionrw.o ../Versuch09/mapionrw.cpp
+
+mapio.o: ../Versuch09/mapio.cpp ../Versuch09/mapio.h \
+		../Versuch09/abstractmap.h \
+		../Versuch09/city.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QString \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
+		../Versuch09/drawable.h \
+		../Versuch09/street.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapio.o ../Versuch09/mapio.cpp
+
+dijkstra.o: ../Versuch09/dijkstra.cpp ../Versuch09/dijkstra.h \
+		../Versuch09/abstractmap.h \
+		../Versuch09/city.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/usr/local/Cellar/qt/5.9.1/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QString \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qstring.h \
+		../Versuch09/drawable.h \
+		../Versuch09/street.h \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/QDebug \
+		/usr/local/Cellar/qt/5.9.1/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dijkstra.o ../Versuch09/dijkstra.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

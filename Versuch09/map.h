@@ -18,6 +18,9 @@ public:
     std::vector<City*> getCities();
     bool addStreet(Street *street);
     City* find_city(const QString city_name) const;
+    std::vector<Street*> get_street_list(const City* city) const;
+    City * get_opposite_city(const Street* street, const City* city) const;
+    double get_length(const Street* street) const;
 
 
 private:

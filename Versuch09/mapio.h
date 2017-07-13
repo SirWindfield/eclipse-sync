@@ -7,7 +7,6 @@
 class MapIo
 {
 public:
-	
 	/// virtual Destructor
 	virtual ~MapIo();
 	

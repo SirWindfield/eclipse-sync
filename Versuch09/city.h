@@ -14,7 +14,7 @@ public:
     int getX() const;
     int getY() const;
     QString getName() const;
-    virtual void draw(QGraphicsScene &scene);
+    virtual void draw(QGraphicsScene &scene, QPen pen = QPen(Qt::black));
 
 private:
     QString name;

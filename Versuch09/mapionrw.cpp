@@ -1,3 +1,5 @@
+#include "city.h"
+#include "street.h"
 #include "mapionrw.h"
 
 MapIoNrw::MapIoNrw()
@@ -10,8 +12,7 @@ MapIoNrw::~MapIoNrw()
 
 }
 
-void
-MapIoNrw::fillMap(AbstractMap &map)
+void MapIoNrw::fillMap(AbstractMap &map)
 {
 	City *aachen = new City ("Aachen", -100, 100);
 	City *bonn = new City ("Bonn", 0,200);

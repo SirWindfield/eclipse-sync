@@ -41,14 +41,17 @@ public:
     QAction *actionAbout;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QLineEdit *le_name;
-    QPushButton *test_cities;
-    QLabel *lbl_input;
-    QGraphicsView *graphicsView;
-    QPushButton *btn_create;
     QSpacerItem *verticalSpacer;
-    QCheckBox *chkbox;
     QPushButton *btn_create_city;
+    QGraphicsView *graphicsView;
+    QPushButton *test_cities;
+    QPushButton *test_abstract_map;
+    QPushButton *btn_create;
+    QLabel *lbl_input;
+    QCheckBox *chkbox;
+    QLineEdit *le_name;
+    QPushButton *fill_map;
+    QPushButton *test_search;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuScene;
@@ -81,45 +84,60 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        le_name = new QLineEdit(centralWidget);
-        le_name->setObjectName(QStringLiteral("le_name"));
-        le_name->setClearButtonEnabled(true);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addWidget(le_name, 1, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer, 9, 0, 1, 1);
 
-        test_cities = new QPushButton(centralWidget);
-        test_cities->setObjectName(QStringLiteral("test_cities"));
+        btn_create_city = new QPushButton(centralWidget);
+        btn_create_city->setObjectName(QStringLiteral("btn_create_city"));
 
-        gridLayout->addWidget(test_cities, 5, 0, 1, 1);
-
-        lbl_input = new QLabel(centralWidget);
-        lbl_input->setObjectName(QStringLiteral("lbl_input"));
-
-        gridLayout->addWidget(lbl_input, 0, 0, 1, 1);
+        gridLayout->addWidget(btn_create_city, 3, 0, 1, 1);
 
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
 
-        gridLayout->addWidget(graphicsView, 0, 1, 7, 1);
+        gridLayout->addWidget(graphicsView, 0, 1, 10, 1);
+
+        test_cities = new QPushButton(centralWidget);
+        test_cities->setObjectName(QStringLiteral("test_cities"));
+
+        gridLayout->addWidget(test_cities, 6, 0, 1, 1);
+
+        test_abstract_map = new QPushButton(centralWidget);
+        test_abstract_map->setObjectName(QStringLiteral("test_abstract_map"));
+
+        gridLayout->addWidget(test_abstract_map, 7, 0, 1, 1);
 
         btn_create = new QPushButton(centralWidget);
         btn_create->setObjectName(QStringLiteral("btn_create"));
 
         gridLayout->addWidget(btn_create, 2, 0, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        lbl_input = new QLabel(centralWidget);
+        lbl_input->setObjectName(QStringLiteral("lbl_input"));
 
-        gridLayout->addItem(verticalSpacer, 6, 0, 1, 1);
+        gridLayout->addWidget(lbl_input, 0, 0, 1, 1);
 
         chkbox = new QCheckBox(centralWidget);
         chkbox->setObjectName(QStringLiteral("chkbox"));
 
-        gridLayout->addWidget(chkbox, 4, 0, 1, 1);
+        gridLayout->addWidget(chkbox, 5, 0, 1, 1);
 
-        btn_create_city = new QPushButton(centralWidget);
-        btn_create_city->setObjectName(QStringLiteral("btn_create_city"));
+        le_name = new QLineEdit(centralWidget);
+        le_name->setObjectName(QStringLiteral("le_name"));
+        le_name->setClearButtonEnabled(true);
 
-        gridLayout->addWidget(btn_create_city, 3, 0, 1, 1);
+        gridLayout->addWidget(le_name, 1, 0, 1, 1);
+
+        fill_map = new QPushButton(centralWidget);
+        fill_map->setObjectName(QStringLiteral("fill_map"));
+
+        gridLayout->addWidget(fill_map, 4, 0, 1, 1);
+
+        test_search = new QPushButton(centralWidget);
+        test_search->setObjectName(QStringLiteral("test_search"));
+
+        gridLayout->addWidget(test_search, 8, 0, 1, 1);
 
         gridLayout->setColumnStretch(1, 1);
         MainWindow->setCentralWidget(centralWidget);
@@ -170,12 +188,15 @@ public:
         actionClear_Scene->setShortcut(QApplication::translate("MainWindow", "Alt+S", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
         actionAbout->setText(QApplication::translate("MainWindow", "About", Q_NULLPTR));
-        le_name->setPlaceholderText(QApplication::translate("MainWindow", "Your input...", Q_NULLPTR));
-        test_cities->setText(QApplication::translate("MainWindow", "Test Cities", Q_NULLPTR));
-        lbl_input->setText(QApplication::translate("MainWindow", "Input", Q_NULLPTR));
-        btn_create->setText(QApplication::translate("MainWindow", "Create", Q_NULLPTR));
-        chkbox->setText(QApplication::translate("MainWindow", "Top Secret Buttons", Q_NULLPTR));
         btn_create_city->setText(QApplication::translate("MainWindow", "Create City", Q_NULLPTR));
+        test_cities->setText(QApplication::translate("MainWindow", "Test Cities", Q_NULLPTR));
+        test_abstract_map->setText(QApplication::translate("MainWindow", "Test Abstract Map", Q_NULLPTR));
+        btn_create->setText(QApplication::translate("MainWindow", "Create", Q_NULLPTR));
+        lbl_input->setText(QApplication::translate("MainWindow", "Input", Q_NULLPTR));
+        chkbox->setText(QApplication::translate("MainWindow", "Top Secret Buttons", Q_NULLPTR));
+        le_name->setPlaceholderText(QApplication::translate("MainWindow", "Your input...", Q_NULLPTR));
+        fill_map->setText(QApplication::translate("MainWindow", "Fill Map", Q_NULLPTR));
+        test_search->setText(QApplication::translate("MainWindow", "Test Search", Q_NULLPTR));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));
         menuScene->setTitle(QApplication::translate("MainWindow", "Scene", Q_NULLPTR));
         menuInfo->setTitle(QApplication::translate("MainWindow", "Info", Q_NULLPTR));
