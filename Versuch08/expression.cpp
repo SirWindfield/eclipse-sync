@@ -11,10 +11,10 @@
 
 Expression::Expression()
 {
-	std::cout << "Created Expression" << std::endl;
+	std::cout << "Created Expression@" << this << std::endl;
 }
 
 Expression::~Expression()
 {
-	std::cout << "Deleted Expression" << std::endl;
+//	std::cout << "Deleted Expression@" << this << std::endl;
 }
