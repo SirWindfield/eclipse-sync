@@ -51,7 +51,7 @@ int main()
                 "Ahornst.55");
         data.push_back(student);
         student = Student(23456, "Walter Rodenstock", "15.10.1963",
-                "W�llnerstr.9");
+                "Wuellnerstr.9");
         data.push_back(student);
         student = Student(34567, "Harro Simoneit", "19.06.1971", "Am Markt 1");
         data.push_back(student);

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Student.h"
+#include <string>
 
 Student::Student(unsigned int matNr, std::string name, std::string dateOfBirth, std::string address) :
 matNr(matNr), name(name), dateOfBirth(dateOfBirth), address(address)

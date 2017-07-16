@@ -12,8 +12,20 @@
 
 class DivExpression: public Expression {
 public:
+
+	/**
+	 * @brief Constructor. Accepts two expressions taht will get divided.
+	 *
+	 * @param left THe first expression used for division.
+	 * @param right The second expression used for division.
+	 */
 	DivExpression(Expression *left, Expression *right);
+
+	/**
+	 * @brief Destructor. Also deletes any passed expression references.
+	 */
 	virtual ~DivExpression();
+
 	virtual double evaluate() const;
 	virtual void print() const;
 
